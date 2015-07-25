@@ -15,11 +15,11 @@
               <form>
                 <li>
                   <label>Location</label>
-                  <input ng-model="newGroup.place">
+                  <input ng-model="newGroup.to">
                   <label>Name</label>
-                  <input ng-model="newGroup.person">
+                  <input ng-model="newGroup.cars.driver">
                   <label>Car seats?
-                    <input type="number" min=0 defaultValue=0 ng-model="newGroup.numSpots">
+                    <input type="number" min=0 defaultValue=0 ng-model="newGroup.cars.capacity">
                   </label>
                   <button class="btn btn-default btn-sm" ng-click="createGroup(newGroup); newGroup=''">Add!</button>
                 </li>

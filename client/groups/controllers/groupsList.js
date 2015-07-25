@@ -2,14 +2,23 @@ angular.module('lunchMeat').controller('GroupsCtrl', ['$scope', '$meteor', funct
   $scope.groups = $meteor.collection(Groups);
 
   $scope.createGroup = function(group) {
-    $scope.groups.save(group);
+    var location = group.to;
+    var cars = group.cars
 
+    var newGroup = {'to':location, 
+                    'cars': [
+                            {'driver':cars.driver,
+                             'capacity':cars.capacity
+                            }
+                     ]
+                   }
+    $scope.groups.save(newGroup);
     console.log("GROUP SAVED");
-    console.log(group);
+    console.log(newGroup);
   }
 
   $scope.removeGroup = function(group) {
-    if (confirm("Are you sure?"))
+    if (confirm("Remove group going to " + group.to + "?"))
     {
       $scope.groups.remove(group);
       console.log("REMOVED GROUP");
