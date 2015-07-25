@@ -1,0 +1,11 @@
+form .btn.btn-default {
+	width: 100%;
+}
+
+.panel-heading .glyphicon {
+	float: right;
+}
+
+.container {
+	width: 800px;
+}

@@ -1,0 +1,14 @@
+Meteor.startup(function () {
+  if (Links.find().count() === 0) {
+    var links = [
+      { 
+        name: 'American Homes 4 Rent',
+        url: 'https://www.americanhomes4rent.com/',
+        description: 'Pay Rent & Utilities'
+      }
+    ];
+
+    for (var i = 0; i < links.length; i++)
+      Links.insert(links[i]);
+  }
+});
