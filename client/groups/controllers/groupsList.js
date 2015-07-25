@@ -18,7 +18,7 @@ angular.module('lunchMeat').controller('GroupsCtrl', ['$scope', '$meteor', funct
   }
 
   $scope.removeGroup = function(group) {
-    if (confirm("Are you sure?"))
+    if (confirm("Remove group going to " + group.to + "?"))
     {
       $scope.groups.remove(group);
       console.log("REMOVED GROUP");
