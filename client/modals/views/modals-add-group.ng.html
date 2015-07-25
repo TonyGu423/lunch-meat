@@ -1,0 +1,19 @@
+<!-- Modal -->
+<div class="modal fade" id="add-group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="ModalsCtrl">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add a Group</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input class="form-control" placeholder="Destination" ng-model="newGroup.to" />
+          <input class="form-control" placeholder="Name" ng-model="newGroup.cars.driver" />
+          <input type="number" class="form-control" min=0 defaultValue=0 placeholder="Amount of seats..." ng-model="newGroup.cars.capacity">
+          <button class="btn btn-primary" ng-click="createGroup(newGroup); newGroup=''">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

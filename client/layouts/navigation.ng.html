@@ -1,35 +1,21 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-static-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <div class="navbar-brand">LunchMeat</div>
     </div>
 
     <ul class="nav navbar-nav">
-      <!-- Add Group -->
       <li>
-          <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Add Group
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <div ng-controller="GroupsCtrl">
-              <form>
-                <li>
-                  <label>Location</label>
-                  <input ng-model="newGroup.to">
-                  <label>Name</label>
-                  <input ng-model="newGroup.cars.driver">
-                  <label>Car seats?
-                    <input type="number" min=0 defaultValue=0 ng-model="newGroup.cars.capacity">
-                  </label>
-                  <button class="btn btn-default btn-sm" ng-click="createGroup(newGroup); newGroup=''">Add!</button>
-                </li>
-              </form>
-            </div>
-          </ul>
+        <a href="#" type="button" data-toggle="modal" data-target="#add-group">Add Group</a>
       </li>
+      <li>
+        <a href="#" type="button" data-toggle="modal" data-target="#join-group">Join Group</a>
+      </li>
+    </ul>
 
-      <!-- Join Group -->
-      <li><a href="#" type="button" data-toggle="modal" data-target="#join-group">Join Group</a></li>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Sign In</a></li>
+      <li><a href="#">Register</a></li>
     </ul>
   </div>
 </nav>

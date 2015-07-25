@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body">
       <form ng-submit="joinGroup()" novalidate>
-        <select class="form-control" ng-model="to" ng-change="getDrivers()">
+        <select class="form-control" ng-model="to" ng-change="getCars()">
           <option value="" disabled selected>Choose a Group...</option>
           <option ng-repeat="group in groups" value="{{group.to}}">{{group.to}}</option>
         </select>
@@ -16,6 +16,7 @@
         <select class="form-control" ng-model="driver" ng-show="cars.length">
           <option value="" disabled selected>Choose a Driver...</option>
           <option ng-repeat="car in cars" value="{{car.driver}}">{{car.driver}}</option>
+          <option value="Unassigned">Unassigned</option>
         </select>
 
         <input type="text" class="form-control" ng-model="name" placeholder="Your Name" />

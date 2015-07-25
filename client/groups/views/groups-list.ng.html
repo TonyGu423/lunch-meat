@@ -1,20 +1,33 @@
 <div ng-controller="GroupsCtrl">
-  <ul ng-repeat="group in groups">
-    <li>Going to {{group.to}}</li>
-    <ul ng-repeat="car in group.cars">
-      <li>Driver: {{car.driver}}</li>
-      <li>Capacity: {{car.capacity}} ({{car.capacity - car.peeps.length}} spots left)</li>
-      <ul ng-repeat="peep in car.peeps">
-        <li>{{peep.name}}</li>
-      </ul>
-    </ul>
-    <ul>
-      <li>Unassigned</li>
-      <ul ng-repeat="unassigned in group.unassigned">
-        <li>{{unassigned.name}}</li>
-      </ul>
-    </ul>
-
-    <button ng-click="removeGroup(group)">remove -- test</button>
-  </ul>
+  <div class="jumbotron" ng-repeat="group in groups">
+    <h3>
+      {{group.to}}
+      <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeGroup(group)"></span>
+    </h3>
+    <div class="row">
+      <div class="col-sm-4" ng-repeat="car in group.cars">
+        <div class="car">
+          <h4>
+            {{car.driver}} 
+            <span class="badge">{{car.capacity}} spots ({{car.capacity - car.peeps.length}} left)</span>
+          </h4>
+          <div ng-hide="car.peeps">
+            So lonely...（´＿｀）
+          </div>
+          <ul ng-repeat="peep in car.peeps">
+            <li>{{peep.name}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-4 unassigned" ng-show="group.unassigned.length">
+        <h4>
+          Unassigned
+          <span class="badge">{{group.unassigned.length}}</span>
+        </h4>
+        <ul ng-repeat="unassigned in group.unassigned">
+          <li>{{unassigned.name}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

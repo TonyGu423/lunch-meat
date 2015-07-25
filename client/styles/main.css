@@ -13,3 +13,14 @@ form .btn.btn-default, form .btn.btn-primary {
 form .form-control {
 	margin-bottom: 1em;
 }
+
+.container .jumbotron {
+	border-radius: 0;
+	-webkit-box-shadow: 0px 5px 20px -5px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 5px 20px -5px rgba(0,0,0,0.75);
+	box-shadow: 0px 5px 20px -5px rgba(0,0,0,0.75);
+}
+
+.jumbotron ul > li {
+	list-style: none;
+}
