@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="GroupsCtrl">
+<div class="modal fade" id="join-group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="ModalsCtrl">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -7,18 +7,18 @@
         <h4 class="modal-title" id="myModalLabel">Join a Group</h4>
       </div>
       <div class="modal-body">
-      <form>
-        <select class="form-control" ng-model="existingGroup.name">
+      <form ng-submit="joinGroup()" novalidate>
+        <select class="form-control" ng-model="to" ng-change="getDrivers()">
           <option value="" disabled selected>Choose a Group...</option>
           <option ng-repeat="group in groups" value="{{group.to}}">{{group.to}}</option>
         </select>
 
-        <select class="form-control" ng-model="existingGroup.driver">
+        <select class="form-control" ng-model="driver" ng-show="cars.length">
           <option value="" disabled selected>Choose a Driver...</option>
-          <option ng-repeat="car in groups.cars" value="{{car.driver}}">{{car.driver}}</option>
+          <option ng-repeat="car in cars" value="{{car.driver}}">{{car.driver}}</option>
         </select>
 
-        <input type="text" class="form-control" placeholder="Your Name" />
+        <input type="text" class="form-control" ng-model="name" placeholder="Your Name" />
 
         <button type="submit" class="btn btn-primary">Join</button>
       </form>
