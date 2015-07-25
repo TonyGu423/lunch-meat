@@ -5,8 +5,31 @@
     </div>
 
     <ul class="nav navbar-nav">
-      <li><a href="#">Add Group</a></li>
-      <li><a href="#">Join Group</a></li>
+      <!-- Add Group -->
+      <li>
+          <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Add Group
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <div ng-controller="GroupsCtrl">
+              <form>
+                <li>
+                  <label>Location</label>
+                  <input ng-model="newGroup.place">
+                  <label>Name</label>
+                  <input ng-model="newGroup.person">
+                  <label>Car seats?
+                    <input type="number" min=0 defaultValue=0 ng-model="newGroup.numSpots">
+                  </label>
+                  <button class="btn btn-default btn-sm" ng-click="createGroup(newGroup); newGroup=''">Add!</button>
+                </li>
+              </form>
+            </div>
+          </ul>
+      </li>
+
+      <!-- Join Group -->
+      <li><a type="button" data-toggle="modal" data-target="#testModal">Join Group</a></li>
     </ul>
   </div>
 </nav>
