@@ -3,7 +3,7 @@
     <li>Going to {{group.to}}</li>
     <ul ng-repeat="car in group.cars">
       <li>Driver: {{car.driver}}</li>
-      <li>Capacity: {{car.capacity}}</li>
+      <li>Capacity: {{car.capacity}} ({{car.capacity - car.peeps.length}} spots left)</li>
       <ul ng-repeat="peep in car.peeps">
         <li>{{peep.name}}</li>
       </ul>
