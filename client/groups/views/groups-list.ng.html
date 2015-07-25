@@ -1,1 +1,18 @@
-<div id="groups"></div>
+<div ng-controller="GroupsCtrl">
+  <ul ng-repeat="group in groups">
+    <li>Going to {{group.to}}</li>
+    <ul ng-repeat="car in group.cars">
+      <li>Driver: {{car.driver}}</li>
+      <li>Capacity: {{car.capacity}}</li>
+      <ul ng-repeat="peep in car.peeps">
+        <li>{{peep.name}}</li>
+      </ul>
+    </ul>
+    <ul>
+      <li>Unassigned</li>
+      <ul ng-repeat="unassigned in group.unassigned">
+        <li>{{unassigned.name}}</li>
+      </ul>
+    </ul>
+  </ul>
+</div>
