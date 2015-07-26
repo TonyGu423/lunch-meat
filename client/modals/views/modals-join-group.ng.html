@@ -13,11 +13,19 @@
           <option ng-repeat="group in groups" value="{{group.to}}">{{group.to}}</option>
         </select>
 
-        <select class="form-control" ng-model="driver" ng-show="cars.length">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="can_drive"> I can drive!
+          </label>
+        </div>
+
+        <select class="form-control" ng-model="driver" ng-show="cars.length && !can_drive">
           <option value="" disabled selected>Choose a Driver...</option>
           <option ng-repeat="car in cars" value="{{car.driver}}">{{car.driver}}</option>
           <option value="Unassigned">Unassigned</option>
         </select>
+
+        <input type="number" class="form-control" ng-model="capacity" placeholder="How many peeps can your car hold?" ng-show="can_drive" />
 
         <input type="text" class="form-control" ng-model="name" placeholder="Your Name" />
 

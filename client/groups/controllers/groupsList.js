@@ -25,4 +25,15 @@ angular.module('lunchMeat').controller('GroupsCtrl', ['$scope', '$meteor', funct
       console.log(group);
     }
   }
+
+  $scope.removeCar = function(groupName, driverName) {
+    $meteor.call('removeCar', groupName, driverName).then(
+      function (data) {
+        console.log('Success! [removeCar]', data);
+      },
+      function (error) {
+        console.log('Failed! [removeCar]', error);
+      }
+    );
+  }
 }]);

@@ -11,7 +11,17 @@ Meteor.methods({
       { to: groupName },
       { $push: { unassigned : { name: peepName }}});
   },
+  joinGroupAsDriver: function(groupName, driverName, capacity) {
+    Groups.update(
+      { to: groupName },
+      { $push: { 'cars': { driver: driverName, capacity: capacity, peeps: [] }}})
+  },
   getCars: function(groupName) {
     return Groups.findOne({ to: groupName }).cars;
+  },
+  removeCar: function(groupName, driverName) {
+    Groups.update(
+      { to: groupName },
+      { $pull: { cars: { driver: driverName }}})
   }
 });

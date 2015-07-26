@@ -10,6 +10,7 @@
           <h4>
             {{car.driver}} 
             <span class="badge">{{car.capacity}} spots ({{car.capacity - car.peeps.length}} left)</span>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeCar(group.to, car.driver)"></span>
           </h4>
           <div ng-hide="car.peeps">
             So lonely...（´＿｀）

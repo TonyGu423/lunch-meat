@@ -25,7 +25,7 @@ angular.module('lunchMeat').controller('ModalsCtrl', ['$scope', '$meteor', funct
   };
 
   $scope.joinGroup = function() {
-    if ($scope.driver == 'Unassigned') {
+    if ($scope.driver === 'Unassigned' && !$scope.can_drive) {  // Unassigned.
       $meteor.call('joinGroupAsUnassigned', $scope.to, $scope.name).then(
         function (data) {
           console.log('Success! [joinGroupAsUnassigned]', data);
@@ -34,7 +34,16 @@ angular.module('lunchMeat').controller('ModalsCtrl', ['$scope', '$meteor', funct
           console.log('Failed! [joinGroupAsUnassigned]', error);
         }
       );
-    } else {
+    } else if ($scope.driver === undefined && $scope.can_drive) {      // New driver joining.
+      $meteor.call('joinGroupAsDriver', $scope.to, $scope.name, $scope.capacity).then(
+        function (data) {
+          console.log('Success! [joinGroupAsDriver]', data);
+        },
+        function (error) {
+          console.log('Failed! [joinGroupAsDriver]', error);
+        }
+      );
+    } else {                                                    // Join existing car.
       $meteor.call('joinGroup', $scope.to, $scope.driver, $scope.name).then(
         function (data) {
           console.log('Success! [joinGroup]', data);
