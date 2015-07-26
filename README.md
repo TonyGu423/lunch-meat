@@ -1,7 +1,7 @@
-# This is done in terms of Mongo console.
-# In Meteor's ORM:
-#   db.groups
-#   -> Groups
+This is done in terms of Mongo console.
+In Meteor's ORM:
+  db.groups
+  -> Groups
 
 # 
 # MODEL
