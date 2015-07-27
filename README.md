@@ -1,16 +1,15 @@
-# This is done in terms of Mongo console.
-# In Meteor's ORM:
-#   db.groups
-#   -> Groups
+This general overview is done in terms of Mongo console.
 
-# 
-# MODEL
-#
+* In Meteor's ORM: `db.groups` &rarr; `Groups`
 
-# Relationships are captured by way of subdocuments.
-#   groups  [one-to-many] cars
-#   cars    [one-to-many] peeps
-Groups {
+## MODEL
+
+* Relationships are captured by way of subdocuments.
+  * groups [one-to-many] cars
+  * cars [one-to-many] peeps
+
+```
+db.groups {
   to: %s,
   cars: [{
     driver: %s,
@@ -19,15 +18,15 @@ Groups {
   }, ...],
   unassigned: [{ name: %s }, ...]
 }
+```
 
-#
-# CREATION
-#
+## CREATION
 
-# Initializing a new group
-db.groups.insert({ to: 'Mexican', car: [] })
+### Initializing a new group.
+`db.groups.insert({ to: 'Mexican', car: [] })`
 
-# Example of a complete insert statement.
+### Example of a complete insert statement.
+```
 db.groups.insert({
   to: 'Thai',
   cars: [{
@@ -41,66 +40,63 @@ db.groups.insert({
   }],
   unassigned: [{ name: 'Blare' }]
 })
+```
 
-#
-# QUERY
-#
+## QUERY
 
-# Find a single object.
-db.groups.findOne({ to: 'Thai' })
-=> Object
+### Find a single object.
+`db.groups.findOne({ to: 'Thai' })`
+&rarr;`Object`
 
-# ... which is the same as:
-db.groups.find({ to: 'Thai' })[0]
-=> Object
+### ... which is the same as:
+`db.groups.find({ to: 'Thai' })[0]`
+&rarr; `Object`
 
-# Therefore, find simply returns an JavaScript Array of all results.
-db.groups.find({})
-=> Array
+### Therefore, find simply returns an JavaScript Array of all results.
+`db.groups.find({})`
+&rarr; `Array`
 
-# Find a car whose driver is 'Dan'.
-db.groups.findOne({ 'cars.driver': 'Dan' })
-=> Object
+### Find a car whose driver is 'Dan'.
+`db.groups.findOne({ 'cars.driver': 'Dan' })`
+&rarr; `Object`
 
-# Get the driver's name (as a String).
-db.groups.findOne({ 'cars.driver': 'Dan' }).cars[0].driver
-=> 'Dan'
+### Get the driver's name (as a String).
+`db.groups.findOne({ 'cars.driver': 'Dan' }).cars[0].driver`
+&rarr; `'Dan'`
 
-# Get an Array of peeps.
-db.groups.findOne({ 'cars.driver': 'Dan' }).cars[1].peeps
-=> Array
-[{ 'name': 'Jerry' }]
+### Get an Array of peeps.
+`db.groups.findOne({ 'cars.driver': 'Dan' }).cars[1].peeps`
+&rarr; `Array`
 
-# Get unassigned peeps.
-db.groups.findOne({ to: 'Thai' }).unassigned
+### Get unassigned peeps.
+`db.groups.findOne({ to: 'Thai' }).unassigned`
+&rarr; `Array`
 
-#
-# UPDATE
-#
+## UPDATE
 
-# Add a new car to an existing group.
-db.groups.update({ to: 'Thai' }, { $push: { 'cars' : { driver: 'Bob', capacity: 2, peeps: []}}})
+### Add a new car to an existing group.
+`db.groups.update({ to: 'Thai' }, { $push: { 'cars' : { driver: 'Bob', capacity: 2, peeps: []}}})`
 
-# Add a new peep to an existing car.
-db.groups.update({ to: 'Thai', 'cars.driver': 'Dan' }, { $push: { 'cars.$.peeps' : { name: 'Larry' }}})
+### Add a new peep to an existing car.
+`db.groups.update({ to: 'Thai', 'cars.driver': 'Dan' }, { $push: { 'cars.$.peeps' : { name: 'Larry' }}})`
 
-# Add unassigned peep.
-db.groups.update({ to: 'Thai' }, { $push: { unassigned: { name: 'Barry' }}})
+### Add unassigned peep.
+`db.groups.update({ to: 'Thai' }, { $push: { unassigned: { name: 'Barry' }}})`
 
-# Remove an existing car.
-db.groups.update({ to: 'Thai' }, { $pull: { cars: { driver: 'Bob' }}})
+### Remove an existing car.
+`db.groups.update({ to: 'Thai' }, { $pull: { cars: { driver: 'Bob' }}})`
 
-# Remove an existing peep from a car.
-db.groups.update({ to: 'Thai', 'cars.driver': 'Dan' }, { $pull: { 'cars.$.peeps': { name: 'Trent' }}})
+### Remove an existing peep from a car.
+`db.groups.update({ to: 'Thai', 'cars.driver': 'Dan' }, { $pull: { 'cars.$.peeps': { name: 'Trent' }}})`
 
-# Remove unassigned peep.
-db.groups.update({ to: 'Thai' }, { $pull: { unassigned: { name: 'Barry' }}})
+### Remove unassigned peep.
+`db.groups.update({ to: 'Thai' }, { $pull: { unassigned: { name: 'Barry' }}})`
 
-# Update the capacity of a car to an arbitrary value.
-db.groups.update({ to: 'Thai', 'cars.driver': 'Abdul' }, { $set: { 'cars.$.capacity' : 5}})
+### Update the capacity of a car to an arbitrary value.
+`db.groups.update({ to: 'Thai', 'cars.driver': 'Abdul' }, { $set: { 'cars.$.capacity' : 5}})`
 
-# ... or decrement the capacity by an arbitrary value.
-db.groups.update({ to: 'Thai', 'cars.driver': 'Abdul' }, { $inc: { 'cars.$.capacity' : -1}})
+### ... or decrement the capacity by an arbitrary value.
+`db.groups.update({ to: 'Thai', 'cars.driver': 'Abdul' }, { $inc: { 'cars.$.capacity' : -1}})`
 
-# ... or increment the capacity by an arbitrary value.
-db.groups.update({ to: 'Thai', 'cars.driver': 'Abdul' }, { $inc: { 'cars.$.capacity' : 1}})
+### ... or increment the capacity by an arbitrary value.
+`db.groups.update({ to: 'Thai', 'cars.driver': 'Abdul' }, { $inc: { 'cars.$.capacity' : 1}})`
