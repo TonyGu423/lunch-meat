@@ -7,30 +7,30 @@
         <h4 class="modal-title" id="myModalLabel">Join a Group</h4>
       </div>
       <div class="modal-body">
-      <form ng-submit="joinGroup()" novalidate>
-        <select class="form-control" ng-model="to" ng-change="getCars()">
-          <option value="" disabled selected>Choose a Group...</option>
-          <option ng-repeat="group in groups" value="{{group.to}}">{{group.to}}</option>
-        </select>
+        <form ng-submit="joinGroup()" novalidate>
+          <select id="to-control" class="form-control" ng-model="to" ng-change="getCars()">
+            <option value="" disabled selected>Choose a Group...</option>
+            <option ng-repeat="group in groups" value="{{group.to}}">{{group.to}}</option>
+          </select>
 
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" ng-model="can_drive"> I can drive!
-          </label>
-        </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="can_drive"> I can drive!
+            </label>
+          </div>
 
-        <select class="form-control" ng-model="driver" ng-show="cars.length && !can_drive">
-          <option value="" disabled selected>Choose a Driver...</option>
-          <option ng-repeat="car in cars" value="{{car.driver}}">{{car.driver}}</option>
-          <option value="Unassigned">Unassigned</option>
-        </select>
+          <select id="driver-control" class="form-control" ng-model="driver" ng-show="cars.length && !can_drive">
+            <option value="" disabled selected>Choose a Driver...</option>
+            <option ng-repeat="car in cars" value="{{car.driver}}">{{car.driver}}</option>
+            <option value="Unassigned">Unassigned</option>
+          </select>
 
-        <input type="number" class="form-control" ng-model="capacity" placeholder="How many peeps can your car hold?" ng-show="can_drive" />
+          <input type="number" class="form-control" ng-model="capacity" placeholder="How many peeps can your car hold?" ng-show="can_drive" />
 
-        <input type="text" class="form-control" ng-model="name" placeholder="Your Name" />
+          <input type="text" class="form-control" ng-model="name" placeholder="Your Name" />
 
-        <button type="submit" class="btn btn-primary">Join</button>
-      </form>
+          <button type="submit" class="btn btn-primary">Join</button>
+        </form>
       </div>
     </div>
   </div>

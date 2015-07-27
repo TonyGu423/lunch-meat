@@ -2,19 +2,47 @@ Groups = new Mongo.Collection("groups");
 
 Meteor.methods({
   joinGroup: function(groupName, driverName, peepName) {
-    Groups.update(
-      { to: groupName, 'cars.driver': driverName },
-      { $push: { 'cars.$.peeps' : { name: peepName }}});
+    //TODO: Need some sort of notification system to be passed back to UI about
+    //      what input/option needs to be selected.
+    if ( groupName, driverName == undefined )
+    {
+      return false;
+    }
+    else
+    {
+      Groups.update(
+        { to: groupName, 'cars.driver': driverName },
+        { $push: { 'cars.$.peeps' : { name: peepName }}});
+    }
+    
   },
   joinGroupAsUnassigned: function(groupName, peepName) {
-    Groups.update(
-      { to: groupName },
-      { $push: { unassigned : { name: peepName }}});
-  },
+    //TODO: Need some sort of notification system to be passed back to UI about
+    //      what input/option needs to be selected.
+    if ( groupName == undefined )
+    {
+      return false;
+    }
+    else   
+    {
+      Groups.update(
+        { to: groupName },
+        { $push: { unassigned : { name: peepName }}});
+    }  
+},
   joinGroupAsDriver: function(groupName, driverName, capacity) {
-    Groups.update(
-      { to: groupName },
-      { $push: { 'cars': { driver: driverName, capacity: capacity, peeps: [] }}})
+    //TODO: Need some sort of notification system to be passed back to UI about
+    //      what input/option needs to be selected.
+    if ( groupName, driverName == undefined )
+    {
+      return false;
+    }
+    else
+    {
+      Groups.update(
+        { to: groupName },
+        { $push: { 'cars': { driver: driverName, capacity: capacity, peeps: [] }}});
+    }
   },
   getCars: function(groupName) {
     return Groups.findOne({ to: groupName }).cars;
