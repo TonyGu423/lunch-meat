@@ -1,3 +1,12 @@
+
+Some generally useful links for development:
+
+* [Google Places API](https://developers.google.com/places/) (Destination Input)
+* [Angular Google Places](https://github.com/arunisrael/angularjs-google-places)
+* [Angular Google Places Autocomplete](https://github.com/kuhnza/angular-google-places-autocomplete)
+* [Google Maps API](https://developers.google.com/maps/) (Mapping Library)
+* [Angular Google Maps](http://angular-ui.github.io/angular-google-maps/#!/)
+
 This general overview is done in terms of Mongo console.
 
 * In Meteor's ORM: `db.groups` &rarr; `Groups`
